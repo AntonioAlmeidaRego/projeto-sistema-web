@@ -25,17 +25,11 @@ import javax.persistence.Table;
 							// essa @Table, o próprio JPA criará com o mesmo nome da class, mas seguindo o
 							// padrão
 public class Cliente implements Serializable {
-	// Atributos e métodos privados, seguindo o primeiro pilar da orientação objetos
-	// (Encapsulamento)
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	// Atributos com padrão Java
-	// Não use ex.: nome_pessoa (errado, isso é padrão SQL) nomePessoa (correto,
-	// isso é padrão Java)
 
 	/*
 	 * Anotação @Id responsável por definir a chave primaria da tabela. E esse
@@ -66,12 +60,16 @@ public class Cliente implements Serializable {
 	private String cidade;
 	@Column(name = "rua_cl", length = 90, nullable = false)
 	private String rua;
+	@Column(name = "numero_cl", length = 10, nullable = false)
+	private String numero;
 	@Column(name = "bairro_cl", length = 120, nullable = false)
 	private String bairro;
 	@Column(name = "complemento_cl", length = 255, nullable = false)
 	private String complemento;
+	@Column(name = "pontoReferencia_cl", length = 255, nullable = false)
+	private String pontoReferencia;
 
-	// Atributos e métodos públicos e métodos especiais (Gets e Sets)
+	// Métodos (Gets e Sets)
 
 	public Long getId() {
 		return id;
@@ -120,6 +118,14 @@ public class Cliente implements Serializable {
 	public void setRua(String rua) {
 		this.rua = rua;
 	}
+	
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
 
 	public String getBairro() {
 		return bairro;
@@ -141,4 +147,12 @@ public class Cliente implements Serializable {
 		return serialVersionUID;
 	}
 
+	public String getPontoReferencia() {
+		return pontoReferencia;
+	}
+
+	public void setPontoReferencia(String pontoReferencia) {
+		this.pontoReferencia = pontoReferencia;
+	}
+	
 }
