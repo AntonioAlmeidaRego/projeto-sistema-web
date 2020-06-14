@@ -18,7 +18,7 @@ import javax.persistence.Table;
  * Fonte: https://www.devmedia.com.br/use-a-serializacao-em-java-com-seguranca/29012
  * */
 
-// Class Java Cliente
+// Class Java Cliente 
 
 @Entity // Anotação que será responsável por criar a tabela na base de dados
 @Table(name = "cliente_tb") // Anotação que renomeará o nome da tabela, seguindo o padrão SQL, caso não use
