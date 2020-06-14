@@ -66,7 +66,7 @@ public class Cliente implements Serializable {
 	private String bairro;
 	@Column(name = "complemento_cl", length = 255, nullable = false)
 	private String complemento;
-	@Column(name = "pontoReferencia_cl", length = 255, nullable = false)
+	@Column(name = "ponto_referencia_cl", length = 255, nullable = false)
 	private String pontoReferencia;
 
 	// Métodos (Gets e Sets)
