@@ -68,6 +68,7 @@ public class Cliente implements Serializable {
 	private String complemento;
 	@Column(name = "ponto_referencia_cl", length = 255, nullable = false)
 	private String pontoReferencia;
+	private boolean activo;
 
 	// Métodos (Gets e Sets)
 
@@ -154,5 +155,15 @@ public class Cliente implements Serializable {
 	public void setPontoReferencia(String pontoReferencia) {
 		this.pontoReferencia = pontoReferencia;
 	}
+
+	public boolean isActivo() {
+		return activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
+	}
+	
+	
 	
 }
