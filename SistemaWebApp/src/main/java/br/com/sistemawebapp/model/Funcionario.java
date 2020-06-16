@@ -47,6 +47,7 @@ public class Funcionario implements Serializable {
 	private String telefone;
 	@Column(name = "numero_carteira_trabalho_cl", nullable = false, length = 30)
 	private String numeroCarteiraTrabalho;
+	private boolean activo;
 
 	public Long getId() {
 		return id;
@@ -98,6 +99,14 @@ public class Funcionario implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public boolean isActivo() {
+		return activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}
 
 }
