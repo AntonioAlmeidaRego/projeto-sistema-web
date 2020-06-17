@@ -28,7 +28,7 @@ import br.com.sistemawebapp.service.FuncionarioService;
 public class FuncionarioController {
 	@Autowired
 	private FuncionarioService funcionarioService;
-	
+	// Metodo GET do HTTP
 	@GetMapping("/cadastro-funcionario")
 	public ModelAndView cadastro(Funcionario funcionario) {
 		return new ModelAndView("funcionario/cadastro").addObject("funcionario", funcionario);
