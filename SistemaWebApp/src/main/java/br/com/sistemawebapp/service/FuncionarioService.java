@@ -76,7 +76,7 @@ public class FuncionarioService implements EntityService<Funcionario> {
 
 	@Override
 	public List<Funcionario> findAll() {
-		return null;
+		return repository.findAll();
 	}
 
 	@Override

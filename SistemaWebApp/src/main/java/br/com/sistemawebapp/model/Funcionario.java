@@ -1,12 +1,20 @@
 package br.com.sistemawebapp.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -46,8 +54,11 @@ public class Funcionario implements Serializable {
 	@Column(name = "telefone_cl", nullable = false, length = 20)
 	private String telefone;
 	@Column(name = "numero_carteira_trabalho_cl", nullable = false, length = 30)
-	private String numeroCarteiraTrabalho;
-	private boolean activo;
+	private String numeroCarteiraTrabalho;// criar uma classe
+	private boolean excluir;
+	@OneToOne
+	@JoinColumn(name = "carteira_trabalho_id")
+	private CarteiraTrabalho carteiraTrabalho; 
 
 	public Long getId() {
 		return id;
@@ -101,12 +112,20 @@ public class Funcionario implements Serializable {
 		return serialVersionUID;
 	}
 
-	public boolean isActivo() {
-		return activo;
+	public boolean isExcluir() {
+		return excluir;
 	}
 
-	public void setActivo(boolean activo) {
-		this.activo = activo;
+	public void setExcluir(boolean excluir) {
+		this.excluir = excluir;
+	}
+
+	public CarteiraTrabalho getCarteiraTrabalho() {
+		return carteiraTrabalho;
+	}
+
+	public void setCarteiraTrabalho(CarteiraTrabalho carteiraTrabalho) {
+		this.carteiraTrabalho = carteiraTrabalho;
 	}
 
 }

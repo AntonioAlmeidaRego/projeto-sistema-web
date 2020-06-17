@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Lista Funcionario</title>
+</head>
+<body>
+	<th:block th:if="${error != null}">
+		<div>
+			<span th:text="${error}"></span>
+		</div>
+	</th:block>
+	<th:block th:if="${success != null}">
+		<div>
+			<span th:text="${success}"></span>
+		</div>
+	</th:block>
+	<th:block th:each="funcionario : ${funcionarios}">
+		<p th:text="${funcionario.nome}"></p>
+	</th:block>
+</body>
+</html>

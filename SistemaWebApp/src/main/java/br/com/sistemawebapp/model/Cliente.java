@@ -68,7 +68,7 @@ public class Cliente implements Serializable {
 	private String complemento;
 	@Column(name = "ponto_referencia_cl", length = 255, nullable = false)
 	private String pontoReferencia;
-	private boolean activo;
+	private boolean excluir;
 
 	// Métodos (Gets e Sets)
 
@@ -119,7 +119,7 @@ public class Cliente implements Serializable {
 	public void setRua(String rua) {
 		this.rua = rua;
 	}
-	
+
 	public String getNumero() {
 		return numero;
 	}
@@ -156,14 +156,12 @@ public class Cliente implements Serializable {
 		this.pontoReferencia = pontoReferencia;
 	}
 
-	public boolean isActivo() {
-		return activo;
+	public boolean isExcluir() {
+		return excluir;
 	}
 
-	public void setActivo(boolean activo) {
-		this.activo = activo;
+	public void setExcluir(boolean excluir) {
+		this.excluir = excluir;
 	}
-	
-	
-	
+
 }
