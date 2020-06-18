@@ -10,6 +10,5 @@ public class SistemaWebAppApplication {
 		System.out.println("OLA MUNDO!");
 		SpringApplication.run(SistemaWebAppApplication.class, args);
 	}
-	// testando o commit, só o milho da pipoca!!!
 
 }
