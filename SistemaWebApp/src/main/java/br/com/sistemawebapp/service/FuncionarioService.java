@@ -4,6 +4,7 @@
 package br.com.sistemawebapp.service;
 
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,32 +25,38 @@ public class FuncionarioService implements EntityService<Funcionario> {
 	
 	@Override
 	public void save(Funcionario entity) {
+		Random random = new Random(1000); // uso previo para não importar a segurança e não causar problemas...
+		entity.setExcluir(false);
+		entity.setIdCrypt(String.valueOf(random.nextInt()));
 		repository.saveAndFlush(entity);
 	}
 
 	@Override
 	public void update(Funcionario entity) {
+		entity.setIdCrypt(entity.getIdCrypt());
 		repository.saveAndFlush(entity);
 	}
 
 	@Override
 	public void delete(Funcionario entity) {
-		
+		entity.setExcluir(true);
+		update(entity);
 	}
 
 	@Override
 	public void delete(String idCrypt) {
-		
+		Funcionario entity = findOne(idCrypt);
+		update(entity);
 	}
 
 	@Override
 	public void restore(Funcionario entity) {
-		
+		// implementar Julia
 	}
 
 	@Override
 	public void restoreAll(List<Funcionario> entitys) {
-		
+		// implementar Julia
 	}
 
 	@Override
@@ -59,18 +66,18 @@ public class FuncionarioService implements EntityService<Funcionario> {
 
 	@Override
 	public Funcionario findOne(String idCrypt) {
-		return null;
+		return repository.findOne(idCrypt);
 	}
 
 	@Override
 	public Funcionario findLast() {
-		// TODO Auto-generated method stub
+		// implementar Julia
 		return null;
 	}
 
 	@Override
 	public Funcionario findFirt() {
-		// TODO Auto-generated method stub
+		// implementar Julia
 		return null;
 	}
 
@@ -81,92 +88,95 @@ public class FuncionarioService implements EntityService<Funcionario> {
 
 	@Override
 	public List<Funcionario> findAllTrash() {
-		// TODO Auto-generated method stub
+		// implementar Julia
 		return null;
 	}
 
 	@Override
 	public List<Funcionario> findAllOrderByCresId() {
-		// TODO Auto-generated method stub
+		// implementar membro do Grupo de Julia
 		return null;
 	}
 
 	@Override
 	public List<Funcionario> findAllOrderByCresId(Long limit) {
-		// TODO Auto-generated method stub
+		// implementar membro do Grupo de Julia
 		return null;
 	}
 
 	@Override
 	public List<Funcionario> findAllOrderByCresId(Long limitOne, Long limitTwo) {
-		// TODO Auto-generated method stub
+		// implementar membro do Grupo de Julia
 		return null;
 	}
 
 	@Override
 	public List<Funcionario> findAllOrderByDescId() {
-		// TODO Auto-generated method stub
+		// implementar membro do Grupo de Julia
 		return null;
 	}
 
 	@Override
 	public List<Funcionario> findAllOrderByDescId(Long limit) {
-		// TODO Auto-generated method stub
+		// implementar membro do Grupo de Julia
 		return null;
 	}
 
 	@Override
 	public List<Funcionario> findAllOrderByDescId(Long limitOne, Long limitTwo) {
-		// TODO Auto-generated method stub
+		// implementar membro do Grupo de Julia junto com ela
 		return null;
 	}
 
 	@Override
 	public List<Funcionario> findAllLimit(Long limit) {
-		// TODO Auto-generated method stub
+		// implementar membro do Grupo de Julia junto com ela
 		return null;
 	}
 
 	@Override
 	public List<Funcionario> findAllLimit(Long limitOne, Long limitTwo) {
-		// TODO Auto-generated method stub
+		// implementar membro do Grupo de Julia junto com ela
 		return null;
 	}
 
 	@Override
 	public List<Funcionario> findAllByOrderAlphabeticCres() {
-		// TODO Auto-generated method stub
+		// implementar membro do Grupo de Julia junto com ela
 		return null;
 	}
 
 	@Override
 	public List<Funcionario> findAllByOrderAlphabeticCres(Long limit) {
-		// TODO Auto-generated method stub
+		// implementar membro do Grupo de Julia junto com ela
 		return null;
 	}
 
 	@Override
 	public List<Funcionario> findAllByOrderAlphabeticCres(Long limitOne, Long limitTwo) {
-		// TODO Auto-generated method stub
+		// implementar membro do Grupo de Julia junto com ela
 		return null;
 	}
 
 	@Override
 	public List<Funcionario> findAllByOrderAlphabeticDesc() {
-		// TODO Auto-generated method stub
+		// implementar membro do Grupo de Julia junto com ela
 		return null;
 	}
 
 	@Override
 	public List<Funcionario> findAllByOrderAlphabeticDesc(Long limit) {
-		// TODO Auto-generated method stub
+		// implementar membro do Grupo de Julia junto com ela
 		return null;
 	}
 
 	@Override
 	public List<Funcionario> findAllByOrderAlphabeticDesc(Long limitOne, Long limitTwo) {
-		// TODO Auto-generated method stub
+		// implementar membro do Grupo de Julia junto com ela
 		return null;
 	}
 
+	public Funcionario findByCPFOrRG(String cpf, String rg) {
+		return repository.findByCPFOrRG(cpf, rg);
+	}
 }
