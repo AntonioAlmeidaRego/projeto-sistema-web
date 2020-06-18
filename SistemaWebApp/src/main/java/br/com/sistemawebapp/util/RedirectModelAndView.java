@@ -3,6 +3,7 @@
  */
 package br.com.sistemawebapp.util;
 
+import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.sistemawebapp.enums.RedirectStatus;
@@ -11,6 +12,7 @@ import br.com.sistemawebapp.enums.RedirectStatus;
  * @author antonio
  *
  */
+@Service
 public class RedirectModelAndView {
 	private String message;
 	private RedirectStatus redirectStatus;

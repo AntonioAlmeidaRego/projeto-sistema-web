@@ -18,12 +18,11 @@ public class ControllerUtil<T extends Object> extends RedirectModelAndView{
 
 	/**
 	 * 
-	 */
-	public ControllerUtil() {
-		view = new SessionModelAndView<T>("user-log", "logado");
-	}
+	 */  
 	
 	public ModelAndView modelAndView(ModelAndView view) {
+		this.view.setKeySession("user-log");
+		this.view.setKeyView("logado");
 		return this.view.viewSessionUser(view);
 	}
 }

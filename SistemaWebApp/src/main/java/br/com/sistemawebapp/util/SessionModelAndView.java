@@ -16,15 +16,21 @@ public class SessionModelAndView <T extends Object>{
 	@Autowired
 	private SessionUtil<T> sessionUtil;
 	private String keySession;
-	private String keyView;
+	private String keyView; 
 	/**
-	 * 
+	 * @param keySession the keySession to set
 	 */
-	public SessionModelAndView(String keySession, String keyView) {
+	public void setKeySession(String keySession) {
 		this.keySession = keySession;
+	}
+	
+	 /**
+	 * @param keyView the keyView to set
+	 */
+	public void setKeyView(String keyView) {
 		this.keyView = keyView;
 	}
-
+	 
 	public ModelAndView viewSessionUser(ModelAndView view) {
 		return view.addObject(keyView, sessionUtil.getSession(keySession));
 	}
