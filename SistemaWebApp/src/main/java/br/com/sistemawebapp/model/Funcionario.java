@@ -53,12 +53,11 @@ public class Funcionario implements Serializable {
 	private String rg;
 	@Column(name = "telefone_cl", nullable = false, length = 20)
 	private String telefone;
-	@Column(name = "numero_carteira_trabalho_cl", nullable = false, length = 30)
-	private String numeroCarteiraTrabalho;// criar uma classe
 	private boolean excluir;
+	private String idCrypt;
 	@OneToOne
 	@JoinColumn(name = "carteira_trabalho_id")
-	private CarteiraTrabalho carteiraTrabalho; 
+	private CarteiraTrabalho carteiraTrabalho;
 
 	public Long getId() {
 		return id;
@@ -100,14 +99,6 @@ public class Funcionario implements Serializable {
 		this.telefone = telefone;
 	}
 
-	public String getNumeroCarteiraTrabalho() {
-		return numeroCarteiraTrabalho;
-	}
-
-	public void setNumeroCarteiraTrabalho(String numeroCarteiraTrabalho) {
-		this.numeroCarteiraTrabalho = numeroCarteiraTrabalho;
-	}
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -126,6 +117,14 @@ public class Funcionario implements Serializable {
 
 	public void setCarteiraTrabalho(CarteiraTrabalho carteiraTrabalho) {
 		this.carteiraTrabalho = carteiraTrabalho;
+	}
+
+	public String getIdCrypt() {
+		return idCrypt;
+	}
+
+	public void setIdCrypt(String idCrypt) {
+		this.idCrypt = idCrypt;
 	}
 
 }
