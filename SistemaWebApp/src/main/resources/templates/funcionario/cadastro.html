@@ -6,11 +6,15 @@
 </head>
 <body>
 	<form th:object="${funcionario}" th:action="@{/funcionario/saveFuncionario}" method="post">
-		<input type="text" th:field="*{nome}"> 	
+		<label for="rua">Nome:</label>
+		<input type="text" th:field="*{nome}"> 
+		 <label for="rua">CPF:</label>	
 		<input type="text" th:field="*{cpf}"> 
+		 <label for="rua">RG:</label>
 		<input type="text" th:field="*{rg}"> 
+		 <label for="rua">Fone:</label>
 		<input type="text" th:field="*{telefone}"> 
-		<input type="text" th:field="*{numeroCarteiraTrabalho}"> 
+		<!-- <input type="text" th:field="*{numeroCarteiraTrabalho}">  -->
 		
 		<button type="submit">Salvar</button>
 	</form>

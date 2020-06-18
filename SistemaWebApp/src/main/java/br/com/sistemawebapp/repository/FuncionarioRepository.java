@@ -17,10 +17,10 @@ import br.com.sistemawebapp.model.Funcionario;
  */
 @Repository
 public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> {
-	@Query(value="select * from funcionario f where f.excluir = false", nativeQuery = true)
+	@Query(value="select * from funcionario_tb f where f.excluir = false", nativeQuery = true)
 	public List<Funcionario> findAll();
-	@Query(value="select * from funcionario f where f.id_crypt = ?", nativeQuery = true)
+	@Query(value="select * from funcionario_tb f where f.id_crypt = ?", nativeQuery = true)
 	public Funcionario findOne(String idCrypt);
-	@Query(value="select * from funcionario f where f.cpf_cl = ? or f.rg_cl = ?", nativeQuery = true)
+	@Query(value="select * from funcionario_tb f where f.cpf_cl = ? or f.rg_cl = ?", nativeQuery = true)
 	public Funcionario findByCPFOrRG(String cpf, String rg);
 }	

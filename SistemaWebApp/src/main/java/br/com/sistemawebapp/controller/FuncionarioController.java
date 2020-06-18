@@ -44,16 +44,16 @@ public class FuncionarioController extends ControllerUtil // todo controller dev
 
 			setMessage("Funcionario Salvo com Sucesso!");
 			setRedirectStatus(RedirectStatus.SUCCESS);
-			return redirect("/funcionario/lista");
 		} else if ((funcionarioAux == null) && (funcionario.getId() != null)) {
 			funcionarioService.update(funcionario);
 
 			setMessage("Funcionario Alterado com Sucesso!");
 			setRedirectStatus(RedirectStatus.SUCCESS);
-			return redirect("/funcionario/lista");
 		}
-		setMessage("Não foi possível salvar funcionario!");
-		setRedirectStatus(RedirectStatus.ERROR);
+		else {
+			setMessage("Não foi possível salvar funcionario!");
+			setRedirectStatus(RedirectStatus.ERROR);
+		}
 		return redirect("/funcionario/lista");
 	}
 
