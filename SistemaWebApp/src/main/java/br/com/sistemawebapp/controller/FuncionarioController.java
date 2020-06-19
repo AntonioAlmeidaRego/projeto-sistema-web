@@ -33,7 +33,7 @@ public class FuncionarioController extends ControllerUtil // todo controller dev
 	public ModelAndView cadastro(Funcionario funcionario) {
 		return modelAndView(new ModelAndView("funcionario/cadastro").addObject("funcionario", funcionario));
 	}
-
+	
 	// Método de Salvar a entidade Funcionario. Método POST HTTP
 	@PostMapping("/saveFuncionario")
 	public ModelAndView save(Funcionario funcionario) {
