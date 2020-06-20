@@ -17,8 +17,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import br.com.sistemawebapp.annotations.EntityQuery;
+import br.com.sistemawebapp.annotations.EntityUnique;
+
 @Entity
 @Table(name = "funcionario_tb")
+@EntityQuery
 public class Funcionario implements Serializable {
 
 	/**
@@ -47,8 +51,10 @@ public class Funcionario implements Serializable {
 	private Long id;
 	@Column(name = "nome_cl", nullable = false, length = 40)
 	private String nome;
+	@EntityUnique
 	@Column(name = "cpf_cl", nullable = false, length = 20)
 	private String cpf;
+	@EntityUnique
 	@Column(name = "rg_cl", nullable = false, length = 20)
 	private String rg;
 	@Column(name = "telefone_cl", nullable = false, length = 20)
