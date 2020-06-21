@@ -1,22 +1,89 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layout}">
 <head>
 <meta charset="UTF-8">
 <title>Lista Funcionario</title>
 </head>
 <body>
-	<th:block th:if="${error != null}">
+	<div class="container-fluid p-4" layout:fragment="corpo-admin">
 		<div>
-			<span th:text="${error}"></span>
+			<th:block
+					th:if="${error != null}">
+				<div class="alert alert-danger text-uppercase">
+					<span th:text="${error}"></span>
+				</div>
+			</th:block>
+			<th:block
+					th:if="${success != null}">
+				<div class="alert alert-success text-uppercase">
+					<span th:text="${success}"></span>
+				</div>
+			</th:block>
+			<th:block th:if="${#lists.isEmpty(funcionarios)}">
+				<div class="alert alert-success">
+					<span class="text-uppercase">NENHUM funcionario CADASTRADo NO SISTEMA</span>
+				</div>
+			</th:block>
 		</div>
-	</th:block>
-	<th:block th:if="${success != null}">
-		<div>
-			<span th:text="${success}"></span>
+		<div class="card card-default">
+			<div class="card-header">
+				<div class="row align-items-center">
+					<div class="col-8">
+						<h3 class="card-title text-uppercase">Lista de Funcionarios</h3>
+					</div>
+				</div>
+			</div>
+			<div class="card-body p-0 table-responsive">
+				<table id="table-categorias" class="table table-hover text-nowrap">
+					<thead>
+					<tr class="text-uppercase">
+						<th style="width: 10px">#</th>
+						<th>Nome</th>
+						<th>Cpf</th>
+						<th>Rg</th>
+						<th>Fone</th>
+						<th>Ações</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr th:each="funcionario, i : ${funcionarios}">
+						<td th:text="${i.count}"></td>
+						<td th:text="${funcionario.nome}"></td>
+						<td th:text="${funcionario.cpf}"></td>
+						<td th:text="${funcionario.rg}"></td>
+						<td th:text="${funcionario.telefone}"></td>
+						<td class="btn-group">
+							<a class="btn-primary btn btn-sm btn-blue"
+							   href="#">
+								<i class="fas fa-info-circle">
+								</i>
+								Detalhe
+							</a>
+							<span class="pl-2"></span>
+							<a class="btn btn-sm btn-success"
+							   href="#">
+								<i class="fas fa-pencil-alt">
+								</i>
+								Editar
+							</a>
+							<span class="pl-2"></span>
+							<a class="delete btn btn-sm btn-danger"
+							   href="#">
+								<i class="fas fa-trash">
+								</i>
+								Excluir</a>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				<div class="pl-4 p-4">
+					<a class="btn btn-outline-dark"
+					   th:href="@{/funcionario/cadastro-funcionario}">Adiciona Novo Funcionario</a>
+				</div>
+			</div>
 		</div>
-	</th:block>
-	<th:block th:each="funcionario : ${funcionarios}">
-		<p th:text="${funcionario.nome}"></p>
-	</th:block>
+	</div>
 </body>
 </html>

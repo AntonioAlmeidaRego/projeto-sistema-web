@@ -8,12 +8,27 @@
 </head>
 <body >
 	<div class="container-fluid p-4" layout:fragment="corpo-admin">
+		<div>
+			<th:block
+					th:if="${error != null}">
+				<div class="alert alert-danger text-uppercase">
+					<span th:text="${error}"></span>
+				</div>
+			</th:block>
+			<th:block
+					th:if="${success != null}">
+				<div class="alert alert-success text-uppercase">
+					<span th:text="${success}"></span>
+				</div>
+			</th:block>
+		</div>
 		<div class="card card-primary">
 			<div class="card-header">
 				<h3 class="card-title">Cadastro de Funcionario</h3>
 			</div>
 			<form role="form" th:object="${funcionario}"
 				th:action="@{/funcionario/saveFuncionario}" method="post">
+				<input type="hidden" th:value="*{id}" th:field="*{id}"/>
 				<div class="card-body">
 					<div class="form-group">
 						<label for="exampleInputEmail1">Nome</label> <input type="text"

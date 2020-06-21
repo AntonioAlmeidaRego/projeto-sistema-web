@@ -11,10 +11,6 @@ import br.com.sistemawebapp.util.EntityValidUtilImpl;
 public class SistemaWebAppApplication {
 
 	public static void main(String[] args) {
-		System.out.println("TESTANDO 123...");
-		System.out.println("OLA MUNDO!!!");
-		EntityValidUtilImpl<Funcionario> impl = new EntityValidUtilImpl<Funcionario>();
-		impl.isEntityValid(EntityUnique.class, new Funcionario());
 		SpringApplication.run(SistemaWebAppApplication.class, args);
 	}
 

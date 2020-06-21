@@ -18,7 +18,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import br.com.sistemawebapp.annotations.EntityQuery;
-import br.com.sistemawebapp.annotations.EntityUnique;
+import br.com.sistemawebapp.annotations.AttrUnique;
+import br.com.sistemawebapp.annotations.AttrUpdate;
+import br.com.sistemawebapp.annotations.IdUpdate;
 
 @Entity
 @Table(name = "funcionario_tb")
@@ -46,15 +48,18 @@ public class Funcionario implements Serializable {
 	 * nula e entre outros
 	 */
 
+	@IdUpdate
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@Column(name = "nome_cl", nullable = false, length = 40)
 	private String nome;
-	@EntityUnique
+	@AttrUpdate
+	@AttrUnique
 	@Column(name = "cpf_cl", nullable = false, length = 20)
 	private String cpf;
-	@EntityUnique
+	@AttrUnique
+	@AttrUpdate
 	@Column(name = "rg_cl", nullable = false, length = 20)
 	private String rg;
 	@Column(name = "telefone_cl", nullable = false, length = 20)
@@ -64,7 +69,7 @@ public class Funcionario implements Serializable {
 	@OneToOne
 	@JoinColumn(name = "carteira_trabalho_id")
 	private CarteiraTrabalho carteiraTrabalho;
-
+	
 	public Long getId() {
 		return id;
 	}

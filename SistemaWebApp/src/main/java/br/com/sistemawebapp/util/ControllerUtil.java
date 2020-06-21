@@ -12,13 +12,19 @@ import org.springframework.web.servlet.ModelAndView;
  *
  */
 @Service
-public class ControllerUtil<T extends Object> extends RedirectModelAndView{
+public class ControllerUtil<T extends Object> extends RedirectModelAndView {
 	@Autowired
-	private SessionModelAndView<T> view; 
+	private SessionModelAndView<T> view;
+	@Autowired
+	private EntityQueryDBImpl<T> queryDBImpl;
 
 	/**
 	 * 
-	 */  
+	 */
+	
+	public EntityQueryDBImpl<T> entityQuery() {
+		return queryDBImpl;
+	}
 	
 	public ModelAndView modelAndView(ModelAndView view) {
 		this.view.setKeySession("user-log");
