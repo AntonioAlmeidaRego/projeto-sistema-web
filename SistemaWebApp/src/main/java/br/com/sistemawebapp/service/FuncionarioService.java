@@ -9,6 +9,7 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.sistemawebapp.annotations.ExecuteQuery;
 import br.com.sistemawebapp.model.Funcionario;
 import br.com.sistemawebapp.repository.FuncionarioRepository;
 import br.com.sistemawebapp.util.EntityService;
@@ -176,6 +177,7 @@ public class FuncionarioService implements EntityService<Funcionario> {
 		return null;
 	}
 
+	@ExecuteQuery
 	public Funcionario findByCPFOrRG(String cpf, String rg) {
 		return repository.findByCPFOrRG(cpf, rg);
 	}
