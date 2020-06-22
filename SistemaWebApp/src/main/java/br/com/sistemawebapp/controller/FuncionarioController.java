@@ -1,6 +1,3 @@
-/**
- * 
- */
 package br.com.sistemawebapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;

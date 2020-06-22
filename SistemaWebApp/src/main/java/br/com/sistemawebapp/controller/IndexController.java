@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class IndexController {
 	
+	
 	@GetMapping("/")
 	public ModelAndView index() {
 		return new ModelAndView("index");
@@ -28,4 +29,5 @@ public class IndexController {
 	public ModelAndView admin() {
 		return new ModelAndView("layout");
 	}
+	
 }
