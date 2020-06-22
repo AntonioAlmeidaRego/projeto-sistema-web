@@ -5,8 +5,6 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.sistemawebapp.annotations.AttrUnique;
-
 class ReturnFunction {
 	public boolean isReturn = false;
 	public String value = "";
@@ -120,9 +118,10 @@ public class EntityValidUtilImpl<Entity extends Object> implements EntityValidUt
 							if (!value.equals(valueUp)) { // verifica se o houve alteração
 								increment++; // se for verdadeiro incrementa a variavel
 							}
-						} catch (IllegalArgumentException | IllegalAccessException e) {
+						} catch (Exception e) {
 							increment = -1;
-							e.printStackTrace();
+							//e.printStackTrace();
+							return true;
 						}
 
 					}

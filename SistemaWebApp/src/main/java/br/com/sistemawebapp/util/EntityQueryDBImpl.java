@@ -3,15 +3,13 @@ package br.com.sistemawebapp.util;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.sistemawebapp.annotations.AttrUpdate;
 import br.com.sistemawebapp.annotations.IdUpdate;
-import br.com.sistemawebapp.model.Funcionario;
-import br.com.sistemawebapp.service.FuncionarioService;
 
 @Service
 public class EntityQueryDBImpl<Entity extends Object> implements EntityQueryDB<Entity> {
@@ -21,7 +19,7 @@ public class EntityQueryDBImpl<Entity extends Object> implements EntityQueryDB<E
 
 	/*
 	 * Método usado para verificar se a entidade atualizou seus atributos que são
-	 * únicos. Esse método possui três parâmetros, tal como um
+	 * únicos. Esse método possui um parâmetro, tal como um
 	 * objeto genérico vindo da interface
 	 */
 	@Override
@@ -64,26 +62,36 @@ public class EntityQueryDBImpl<Entity extends Object> implements EntityQueryDB<E
 	 */
 	@Override
 	public boolean isExist(Object... ts) {
+		Integer increment = 0;
+		List<Method> methods = new ArrayList<Method>();
 		for (Method method : this.object.getClass().getDeclaredMethods()) {
 			for (Annotation annotation : method.getAnnotations()) {
 				if (annotation.annotationType().getSimpleName().equals("ExecuteQuery")) {
+					methods.add(method);
 					method.setAccessible(true);
 					try {
 						objectReturn = method.invoke(object, ts);
 						if (objectReturn != null) {
-							return true;
+							increment++;
 						}
 					} catch (IllegalAccessException e) {
 						e.printStackTrace();
+						return true;
 					} catch (IllegalArgumentException e) {
 						e.printStackTrace();
+						return true;
 					} catch (InvocationTargetException e) {
 						e.printStackTrace();
+						return true;
 					}
 				}
 			}
 		}
 
+		if(increment == methods.size()) {
+			return true;
+		}
+		
 		return false;
 	}
 

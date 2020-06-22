@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.sistemawebapp.annotations.AttrUpdate;
-import br.com.sistemawebapp.annotations.IdUpdate;
 import br.com.sistemawebapp.enums.RedirectStatus;
 import br.com.sistemawebapp.model.Funcionario;
 import br.com.sistemawebapp.service.FuncionarioService;
