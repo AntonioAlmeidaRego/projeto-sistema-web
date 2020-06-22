@@ -23,4 +23,7 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> 
 	public Funcionario findOne(String idCrypt);
 	@Query(value="select * from funcionario_tb f where f.cpf_cl = ? or f.rg_cl = ?", nativeQuery = true)
 	public Funcionario findByCPFOrRG(String cpf, String rg);
+	@Query(value="select * from funcionario_tb f where f.id_crypt = ?", nativeQuery = true)
+	public Funcionario findByIdCrypt(String idCrypt);
+	
 }	

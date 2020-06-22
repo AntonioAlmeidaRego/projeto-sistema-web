@@ -181,4 +181,8 @@ public class FuncionarioService implements EntityService<Funcionario> {
 	public Funcionario findByCPFOrRG(String cpf, String rg) {
 		return repository.findByCPFOrRG(cpf, rg);
 	}
+
+	public Funcionario findByIdCrypt(String idCrypt) {
+		return repository.findByIdCrypt(idCrypt);
+	}
 }

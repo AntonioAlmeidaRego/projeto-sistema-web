@@ -133,5 +133,17 @@ public class FuncionarioController extends ControllerUtil<Funcionario> // todo c
 		setRedirectStatus(RedirectStatus.ERROR);
 		return redirect("/funcionario/lista");
 	}
+	
+	@GetMapping("/updateFuncionario/{id}")
+	public ModelAndView update(@PathVariable("id") String idCrypt) {
+		Funcionario funcionario = funcionarioService.findByIdCrypt(idCrypt);
+		if(funcionario !=null) {
+			return cadastro(funcionario);
+		}
+		
+		setMessage("Funcionário não Encontrado. Por Favor tente novamente!");
+		setRedirectStatus(RedirectStatus.ERROR);
+		return redirect("/funcionario/lista");
+	}
 
 }
