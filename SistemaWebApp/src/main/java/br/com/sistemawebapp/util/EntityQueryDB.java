@@ -19,15 +19,15 @@ public interface EntityQueryDB<Entity extends Object> {
 
 	/*
 	 * Método usado para verificar se a entidade atualizou seus atributos que são
-	 * únicos. Esse método possui três parâmetros, tais como objeto genérico, e dois
-	 * objetos genéricos vindo da interface
+	 * únicos. Esse método possui três parâmetros, tal como um
+	 * objeto genérico vindo da interface
 	 */
-	public boolean isUpdate(Object object, Entity entity, Entity entityQuery);
+	public boolean isUpdate(Entity entity);
 
 	/*
 	 * Método usado para verificar se o atributo primário da entidade atualizou.
-	 * Esse método possui dois parâmetros, tais como objeto genérico, e um objeto
+	 * Esse método possui dois parâmetros, tal como um objeto
 	 * genérico vindo da interface
 	 */
-	public boolean isIdUpdate(Object object, Entity entity);
+	public boolean isIdUpdate(Entity entity);
 }

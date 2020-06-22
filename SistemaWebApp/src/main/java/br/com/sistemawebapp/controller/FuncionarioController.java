@@ -52,11 +52,11 @@ public class FuncionarioController extends ControllerUtil<Funcionario> // todo c
 		entityQuery().setReturnObject(new Funcionario()); // Método para setar o objeto que vai retornar na consulta da
 															// base de dados
 
-		final boolean isIdUpdate = entityQuery().isIdUpdate(IdUpdate.class,
-				funcionario); /*
-								 * Método usado para verificar se a chave primaria é diferente de vazio, caso
-								 * isso ocorra é porque essa entidade não existe na base de dados
-								 */
+		final boolean isIdUpdate = entityQuery()
+				.isIdUpdate(funcionario); /*
+											 * Método usado para verificar se a chave primaria é diferente de vazio,
+											 * caso isso ocorra é porque essa entidade não existe na base de dados
+											 */
 		if ((!isIdUpdate)) { // Se for falso, entidade não foi inserida na base de dados
 			final boolean exist = entityQuery().isExist(funcionario.getCpf(),
 					funcionario.getRg());/*
@@ -75,13 +75,10 @@ public class FuncionarioController extends ControllerUtil<Funcionario> // todo c
 											 * Método usado para verificar se existe uma entidade que tenha os atributos
 											 * únicos
 											 */
-			final boolean entityUptade = entityQuery().isUpdate(AttrUpdate.class, funcionario, /*
-																								 * Método para verificar
-																								 * se a entidade
-																								 * atualizou seus
-																								 * atributos únicos.
-																								 */
-					(Funcionario) entityQuery().getReturnObject());
+			final boolean entityUptade = entityQuery()
+					.isUpdate(funcionario);/*
+											 * Método para verificar se a entidade atualizou seus atributos únicos.
+											 */
 			/*
 			 * Se a entidade não atualizou seus dados e se existe uma entidade com esses
 			 * dados. Deverá retornar verdadeiro. Caso isso aconteça esta entidade deverá

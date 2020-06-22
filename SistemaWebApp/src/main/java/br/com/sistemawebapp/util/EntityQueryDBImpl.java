@@ -8,6 +8,8 @@ import java.lang.reflect.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.sistemawebapp.annotations.AttrUpdate;
+import br.com.sistemawebapp.annotations.IdUpdate;
 import br.com.sistemawebapp.model.Funcionario;
 import br.com.sistemawebapp.service.FuncionarioService;
 
@@ -19,22 +21,22 @@ public class EntityQueryDBImpl<Entity extends Object> implements EntityQueryDB<E
 
 	/*
 	 * Método usado para verificar se a entidade atualizou seus atributos que são
-	 * únicos. Esse método possui três parâmetros, tais como objeto genérico, e dois
-	 * objetos genéricos vindo da interface
+	 * únicos. Esse método possui três parâmetros, tal como um
+	 * objeto genérico vindo da interface
 	 */
 	@Override
-	public boolean isUpdate(Object object, Entity entity, Entity entityQuery) {
-		return entityImpl.isEntityUpdate(object, entity, entityQuery);
+	public boolean isUpdate(Entity entity) {
+		return entityImpl.isEntityUpdate(AttrUpdate.class, entity, (Entity) objectReturn);
 	}
 
 	/*
 	 * Método usado para verificar se o atributo primário da entidade atualizou.
-	 * Esse método possui dois parâmetros, tais como objeto genérico, e um objeto
+	 * Esse método possui um parâmetro, tal como um objeto
 	 * genérico vindo da interface
 	 */
 	@Override
-	public boolean isIdUpdate(Object object, Entity entity) {
-		return entityImpl.isIdUpdate(object, entity);
+	public boolean isIdUpdate(Entity entity) {
+		return entityImpl.isIdUpdate(IdUpdate.class, entity);
 	}
 
 	// Método usado para setar o objeto que será retornado na consulta
