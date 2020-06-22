@@ -57,7 +57,7 @@
 								class="btn-primary btn btn-sm btn-blue" href="#"> <i
 									class="fas fa-info-circle"> </i> Detalhe
 							</a> <span class="pl-2"></span> <a class="btn btn-sm btn-success"
-								href="#"> <i class="fas fa-pencil-alt"> </i> Editar
+								th:href="@{/funcionario/updateFuncionario/{id}(id=${funcionario.idCrypt})}"> <i class="fas fa-pencil-alt"> </i> Editar
 							</a> <span class="pl-2"></span> <a
 								class="delete btn btn-sm btn-danger" href="#"> <i
 									class="fas fa-trash"> </i> Excluir
