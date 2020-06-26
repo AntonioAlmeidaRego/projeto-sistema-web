@@ -46,7 +46,7 @@ public class FuncionarioController extends ControllerUtil<Funcionario> // todo c
 		entityQuery().setObject(funcionarioService); // Método para setar o objeto que faz a consulta na base de dados
 		entityQuery().setReturnObject(new Funcionario()); // Método para setar o objeto que vai retornar na consulta da
 															// base de dados
-
+		
 		final boolean isIdUpdate = entityQuery()
 				.isIdUpdate(funcionario); /*
 											 * Método usado para verificar se a chave primaria é diferente de vazio,
@@ -128,14 +128,14 @@ public class FuncionarioController extends ControllerUtil<Funcionario> // todo c
 		setRedirectStatus(RedirectStatus.ERROR);
 		return redirect("/funcionario/lista");
 	}
-	
+
 	@GetMapping("/updateFuncionario/{id}")
 	public ModelAndView update(@PathVariable("id") String idCrypt) {
 		Funcionario funcionario = funcionarioService.findByIdCrypt(idCrypt);
-		if(funcionario !=null) {
+		if (funcionario != null) {
 			return cadastro(funcionario);
 		}
-		
+
 		setMessage("Funcionário não Encontrado. Por Favor tente novamente!");
 		setRedirectStatus(RedirectStatus.ERROR);
 		return redirect("/funcionario/lista");
