@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout-index}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdminLTE 3 | Log in</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div layout:fragment="corpo-login">
+    <div class="login-logo">
+        <a href="../../index2.html"><b>Admin</b>LTE</a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="card">
+        <div class="card-body login-card-body">
+            <p class="login-box-msg">Fazer Login</p>
+
+            <div th:replace="fragmentos/login/form-frag :: form_frag">
+            </div>
+
+            <div th:replace="fragmentos/login/social-frag :: social_frag">
+            </div>
+            <!-- /.social-auth-links -->
+            <div th:replace="fragmentos/login/extra-login :: extra_login_frag">
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
