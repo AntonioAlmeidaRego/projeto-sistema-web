@@ -109,7 +109,7 @@ public class FuncionarioController extends ControllerUtil<Funcionario> // todo c
 			if ((exist) && (!entityUptade)) {
 				return false;
 				
-			} else if (!exist) {
+			} else if (!exist) { 
 				return false;
 			}
 		}
