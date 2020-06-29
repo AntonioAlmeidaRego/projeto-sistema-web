@@ -21,7 +21,7 @@ import br.com.sistemawebapp.util.ControllerUtil;
 @RequestMapping("/funcionario")
 public class FuncionarioController extends ControllerUtil<Funcionario> // todo controller deverá extender dessa class
 {
-	@Autowired
+	@Autowired 
 	private FuncionarioService funcionarioService;
 
 	/*
