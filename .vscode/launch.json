@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SistemaWebAppApplication<SistemaWebApp>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "br.com.sistemawebapp.SistemaWebAppApplication",
+            "projectName": "SistemaWebApp",
+            "args": ""
+        }
+    ]
+}
