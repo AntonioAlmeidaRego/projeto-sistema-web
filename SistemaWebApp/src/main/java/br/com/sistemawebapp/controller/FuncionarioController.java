@@ -21,7 +21,7 @@ import br.com.sistemawebapp.util.ControllerUtil;
 @RequestMapping("/funcionario")
 public class FuncionarioController extends ControllerUtil<Funcionario> // todo controller deverá extender dessa class
 {
-	@Autowired
+	@Autowired 
 	private FuncionarioService funcionarioService;
 
 	/*
@@ -38,72 +38,19 @@ public class FuncionarioController extends ControllerUtil<Funcionario> // todo c
 	 * Método POST do protocolo HTTP
 	 */
 	@PostMapping("/saveFuncionario")
-	public ModelAndView save(Funcionario funcionario) {
-		/*
-		 * Esses métodos são obrigatórios, devem ser instanciados para que os demais
-		 * possam ser executados
-		 */
-		entityQuery().setObject(funcionarioService); // Método para setar o objeto que faz a consulta na base de dados
-		entityQuery().setReturnObject(new Funcionario()); // Método para setar o objeto que vai retornar na consulta da
-															// base de dados
-		
-		final boolean isIdUpdate = entityQuery()
-				.isIdUpdate(funcionario); /*
-											 * Método usado para verificar se a chave primaria é diferente de vazio,
-											 * caso isso ocorra é porque essa entidade não existe na base de dados
-											 */
-		if ((!isIdUpdate)) { // Se for falso, entidade não foi inserida na base de dados
-			final boolean exist = entityQuery().isExist(funcionario.getCpf(),
-					funcionario.getRg());/*
-											 * Método usado para verificar se existe uma entidade que tenha os atributos
-											 * únicos
-											 */
-			if (!exist) {// Se for falso não existe uma entidade com essas informações na base de dados
-				funcionarioService.save(funcionario); // Inserir na base de dados
-				setMessage("Funcionario Salvo com Sucesso!"); // Setar uma mensagem de sucesso
-				setRedirectStatus(RedirectStatus.SUCCESS); // Setar o status do redirecionamento da requisição
-				return redirect("/funcionario/lista"); // redirecionar para a página lista
-			}
-		} else if ((isIdUpdate)) {// Se for verdadeiro, entidade já foi inserida na base de dados
-			final boolean exist = entityQuery().isExist(funcionario.getCpf(),
-					funcionario.getRg());/*
-											 * Método usado para verificar se existe uma entidade que tenha os atributos
-											 * únicos
-											 */
-			final boolean entityUptade = entityQuery()
-					.isUpdate(funcionario);/*
-											 * Método para verificar se a entidade atualizou seus atributos únicos.
-											 */
-			/*
-			 * Se a entidade não atualizou seus dados e se existe uma entidade com esses
-			 * dados. Deverá retornar verdadeiro. Caso isso aconteça esta entidade deverá
-			 * atualizar seus dados.
-			 */
-			if ((exist) && (!entityUptade)) {
-				funcionarioService.update(funcionario); // Atualizar na base de dados
-				setMessage("Funcionario Alterado com Sucesso!"); // Setar uma mensagem de sucesso
-				setRedirectStatus(RedirectStatus.SUCCESS); // Setar o status do redirecionamento da requisição
-				return redirect("/funcionario/lista"); // redirecionar para a página lista
-			} else {
-				/*
-				 * Senão. Se a entidade atualizou seus dados, mas não poderá inserir informações
-				 * que já tenha na base de dados. Isso deverá retornar verdadeiro
-				 */
-				if (!exist) {
-					funcionarioService.update(funcionario);// Atualizar na base de dados
-					setMessage("Funcionario Alterado com Sucesso!");// Setar uma mensagem de sucesso
-					setRedirectStatus(RedirectStatus.SUCCESS);// Setar o status do redirecionamento da requisição
-					return redirect("/funcionario/lista");// redirecionar para a página lista
-				}
-			}
+	public ModelAndView save(Funcionario funcionario) {	
+		if (isNewEntity(funcionario)) {  // Cadastra um novo funcionário.
+			funcionarioService.save(funcionario); 
+			setMessage("Funcionario Salvo com Sucesso!"); 
+			setRedirectStatus(RedirectStatus.SUCCESS); 
+			return redirect("/funcionario/lista"); 
+		} 
+		else if (existing(funcionario)) {  // Atualiza um funcionário já cadastrado.
+			funcionarioService.update(funcionario); 
+			setMessage("Funcionario Alterado com Sucesso!"); 
+			setRedirectStatus(RedirectStatus.SUCCESS); 
+			return redirect("/funcionario/lista"); 
 		}
-
-		/*
-		 * Se o fluxo do método save retornar o método cadastro, mostra que a entidade
-		 * não tem informações suficientes para inserir na base de dados, não seguindo a
-		 * regra de negocio do projeto.
-		 */
-
 		return cadastro(funcionario).addObject("error", "Não foi possível salvar funcionario!");
 	}
 
@@ -128,17 +75,52 @@ public class FuncionarioController extends ControllerUtil<Funcionario> // todo c
 		setRedirectStatus(RedirectStatus.ERROR);
 		return redirect("/funcionario/lista");
 	}
-
+	
 	@GetMapping("/updateFuncionario/{id}")
 	public ModelAndView update(@PathVariable("id") String idCrypt) {
 		Funcionario funcionario = funcionarioService.findByIdCrypt(idCrypt);
-		if (funcionario != null) {
+		if(funcionario !=null) {
 			return cadastro(funcionario);
 		}
-
+		
 		setMessage("Funcionário não Encontrado. Por Favor tente novamente!");
 		setRedirectStatus(RedirectStatus.ERROR);
 		return redirect("/funcionario/lista");
 	}
-
+	
+	private boolean isNewEntity(Funcionario funcionario) {
+		entityQuery().setObject(funcionarioService); 
+		
+		entityQuery().setReturnObject(new Funcionario());
+		
+		final boolean isIdUpdate = entityQuery().isIdUpdate(funcionario); 
+		
+		if ((!isIdUpdate)) {
+			final boolean exist = entityQuery().isExist(funcionario.getCpf(),funcionario.getRg());
+			if (!exist) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	private boolean existing(Funcionario funcionario) {
+		entityQuery().setObject(funcionarioService); 
+		entityQuery().setReturnObject(new Funcionario()); 
+		final boolean isIdUpdate = entityQuery().isIdUpdate(funcionario); 
+		
+		if ((isIdUpdate)) {
+			final boolean exist = entityQuery().isExist(funcionario.getCpf(),funcionario.getRg());									 
+			final boolean entityUptade = entityQuery().isUpdate(funcionario);
+			
+			if ((exist) && (!entityUptade)) {
+				return true;
+				
+			} else if (!exist) { 
+				return true;
+			}
+		}
+		return false;
+	}
 }

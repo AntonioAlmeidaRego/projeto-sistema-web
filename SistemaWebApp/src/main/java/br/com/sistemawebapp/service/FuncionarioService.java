@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import br.com.sistemawebapp.annotations.ExecuteQuery;
 import br.com.sistemawebapp.model.Funcionario;
 import br.com.sistemawebapp.repository.FuncionarioRepository;
+import br.com.sistemawebapp.util.CryptUtil;
 import br.com.sistemawebapp.util.EntityService;
 
 /**
@@ -23,18 +24,19 @@ import br.com.sistemawebapp.util.EntityService;
 public class FuncionarioService implements EntityService<Funcionario> {
 	@Autowired
 	private FuncionarioRepository repository;
+	private CryptUtil cryptUtil = new CryptUtil();
 	
 	@Override
 	public void save(Funcionario entity) {
-		Random random = new Random(1000); // uso previo para não importar a segurança e não causar problemas...
 		entity.setExcluir(false);
-		entity.setIdCrypt(String.valueOf(random.nextInt()));
+		entity.setIdCrypt(cryptUtil.crypId());
 		repository.saveAndFlush(entity);
 	}
 
 	@Override
 	public void update(Funcionario entity) {
-		entity.setIdCrypt(entity.getIdCrypt());
+		Funcionario funcionario = getOne(entity.getId());
+		entity.setIdCrypt(funcionario.getIdCrypt());
 		repository.saveAndFlush(entity);
 	}
 
@@ -52,12 +54,10 @@ public class FuncionarioService implements EntityService<Funcionario> {
 
 	@Override
 	public void restore(Funcionario entity) {
-		// implementar Julia
 	}
 
 	@Override
 	public void restoreAll(List<Funcionario> entitys) {
-		// implementar Julia
 	}
 
 	@Override
@@ -69,16 +69,18 @@ public class FuncionarioService implements EntityService<Funcionario> {
 	public Funcionario findOne(String idCrypt) {
 		return repository.findOne(idCrypt);
 	}
+	
+	public Funcionario getOne(Long id) {
+		return repository.getOne(id);
+	}
 
 	@Override
 	public Funcionario findLast() {
-		// implementar Julia
 		return null;
 	}
 
 	@Override
 	public Funcionario findFirt() {
-		// implementar Julia
 		return null;
 	}
 
@@ -89,91 +91,76 @@ public class FuncionarioService implements EntityService<Funcionario> {
 
 	@Override
 	public List<Funcionario> findAllTrash() {
-		// implementar Julia
 		return null;
 	}
 
 	@Override
 	public List<Funcionario> findAllOrderByCresId() {
-		// implementar membro do Grupo de Julia
 		return null;
 	}
 
 	@Override
 	public List<Funcionario> findAllOrderByCresId(Long limit) {
-		// implementar membro do Grupo de Julia
 		return null;
 	}
 
 	@Override
 	public List<Funcionario> findAllOrderByCresId(Long limitOne, Long limitTwo) {
-		// implementar membro do Grupo de Julia
 		return null;
 	}
 
 	@Override
 	public List<Funcionario> findAllOrderByDescId() {
-		// implementar membro do Grupo de Julia
 		return null;
 	}
 
 	@Override
 	public List<Funcionario> findAllOrderByDescId(Long limit) {
-		// implementar membro do Grupo de Julia
 		return null;
 	}
 
 	@Override
 	public List<Funcionario> findAllOrderByDescId(Long limitOne, Long limitTwo) {
-		// implementar membro do Grupo de Julia junto com ela
 		return null;
 	}
 
 	@Override
 	public List<Funcionario> findAllLimit(Long limit) {
-		// implementar membro do Grupo de Julia junto com ela
 		return null;
 	}
 
 	@Override
 	public List<Funcionario> findAllLimit(Long limitOne, Long limitTwo) {
-		// implementar membro do Grupo de Julia junto com ela
 		return null;
 	}
 
 	@Override
 	public List<Funcionario> findAllByOrderAlphabeticCres() {
-		// implementar membro do Grupo de Julia junto com ela
 		return null;
 	}
 
 	@Override
 	public List<Funcionario> findAllByOrderAlphabeticCres(Long limit) {
-		// implementar membro do Grupo de Julia junto com ela
 		return null;
 	}
 
 	@Override
 	public List<Funcionario> findAllByOrderAlphabeticCres(Long limitOne, Long limitTwo) {
-		// implementar membro do Grupo de Julia junto com ela
 		return null;
 	}
 
 	@Override
 	public List<Funcionario> findAllByOrderAlphabeticDesc() {
-		// implementar membro do Grupo de Julia junto com ela
 		return null;
 	}
 
 	@Override
 	public List<Funcionario> findAllByOrderAlphabeticDesc(Long limit) {
-		// implementar membro do Grupo de Julia junto com ela
 		return null;
 	}
 
 	@Override
 	public List<Funcionario> findAllByOrderAlphabeticDesc(Long limitOne, Long limitTwo) {
-		// implementar membro do Grupo de Julia junto com ela
 		return null;
 	}
 
